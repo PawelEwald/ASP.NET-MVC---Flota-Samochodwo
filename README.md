@@ -1,7 +1,7 @@
 Program przygotowywany jako podstawa do Pracy Inżynierskiej 
 
 <ul>
-<li>Wykorzystano:</li>
+<b>Wykorzystano:</b>
     
 <li>TSQL - DB first</li>
 <li>ASP.NET MVC</li>
