@@ -1,8 +1,8 @@
 Program przygotowywany jako podstawa do Pracy Inżynierskiej 
 
-Wykorzystano:
-TSQL - DB first
-ASP.NET MVC
+Wykorzystano:<br />
+TSQL - DB first<br />
+ASP.NET MVC<br />
 ADO.NET Entity Data Model
 Bootstrap
 LINQ
