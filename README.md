@@ -1,4 +1,5 @@
-Program przygotowywany jako podstawa do Pracy Inżynierskiej 
+Projekt przygotowywany jako podstawa do Pracy Inżynierskiej 
+
 
 <ul>
 <b>Wykorzystano:</b>
