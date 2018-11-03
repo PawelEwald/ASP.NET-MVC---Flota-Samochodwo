@@ -1,0 +1,90 @@
+﻿@model PracaWSIZ.Models.DetailsViewModel
+
+@{
+    ViewBag.Title = "DodajCzynnosciDoAuta";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<br />
+<h2>Dodaj nowe czynności do auta</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <div class="form-group">
+            @Html.Label("Nazwa czynności", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CzynnosciAutoCoDotyczyVM.nazwaCzynnosci, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CzynnosciAutoCoDotyczyVM.nazwaCzynnosci, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Czynność co ile km", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CzynnosciAutoCoDotyczyVM.czynnoscKM, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CzynnosciAutoCoDotyczyVM.czynnoscKM, "", new { @class = "text-danger" })
+                @ViewBag.km
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Czynność co ile m-cy", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CzynnosciAutoCoDotyczyVM.czynnoscMiesiace, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CzynnosciAutoCoDotyczyVM.czynnoscMiesiace, "", new { @class = "text-danger" })
+                @ViewBag.data
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+                @Html.ActionLink("Powróć", "Details", new { id = ViewBag.idSamochodu }, new { @class = "btn btn-warning" })
+
+
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+<br />
+<br />
+<h2>Czynności wcześniej dodane</h2>
+
+
+<table class="table table-striped">
+
+    <tr>
+        <th>@Html.Label("Nazwa czynności")</th>
+        <th>@Html.Label("Co ile km wykonać")</th>
+        <th>@Html.Label("Co ile m-cy wykonać")</th>
+
+        <th> </th>
+    </tr>
+
+
+    @foreach (var item in Model.czynnosciAcutCoDotyczyLista)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.nazwaCzynnosci)</td>
+            <td>@Html.DisplayFor(modelItem => item.czynnoscKM)</td>
+            <td>@Html.DisplayFor(modelItem => item.czynnoscMiesiace)</td>
+
+
+        </tr>
+    }
+
+</table>

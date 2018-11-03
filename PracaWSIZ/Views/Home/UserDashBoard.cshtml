@@ -1,0 +1,20 @@
+﻿@model PracaWSIZ.Models.Uzytkownik
+
+@{
+    ViewBag.Title = "Witaj " + @Session["UserName"].ToString() + "";
+}
+
+<h2>
+    Witam @Session["Imie"].ToString() @Session["Nazwisko"].ToString()
+</h2>
+
+<fieldset>
+    <legend> User DashBoard </legend>
+
+    @if (Session["UserName"] != null)
+    {
+        <h1>Hello @Session["UserName"].ToString()!!</h1>
+        <h1>@Session["UserID"].ToString()</h1>
+
+    }
+</fieldset>  

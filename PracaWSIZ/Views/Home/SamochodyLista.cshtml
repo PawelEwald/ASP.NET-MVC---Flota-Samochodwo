@@ -1,0 +1,53 @@
+﻿@model IEnumerable<PracaWSIZ.Models.SamochodySprzedaneViewModel>
+
+@{
+    ViewBag.Title = "SamochodyLista";
+}
+@if (Session["UserName"] != null)
+{
+    <h2>Lista Samochodow</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "CreateNewCar")
+    </p>
+
+
+
+
+    <table class="table table-striped">
+
+        <tr>
+            <th>@Html.Label("Marka")</th>
+            <th>@Html.Label("Model")</th>
+            <th>@Html.Label("Rejestracja")</th>
+            <th>@Html.Label("Nadwozie")</th>
+            <th>@Html.Label("Paliwo")</th>
+            <th>@Html.Label("Km")</th>
+            <th>@Html.Label("Pojemność")</th>
+            <th>@Html.Label("Rocznik")</th>
+
+            <th> </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.samochodyVM.marka)</td>
+                <td>@Html.DisplayFor(modelItem => item.samochodyVM.model)</td>
+                <td>@Html.DisplayFor(modelItem => item.samochodyVM.nrRejestracyjny)</td>
+                <td>@Html.DisplayFor(modelItem => item.samochodyVM.nazwozie)</td>
+                <td>@Html.DisplayFor(modelItem => item.samochodyVM.paliwo)</td>
+                <td>@Html.DisplayFor(modelItem => item.samochodyVM.konie)</td>
+                <td>@Html.DisplayFor(modelItem => item.samochodyVM.pojemnosc)</td>
+                <td>@Html.DisplayFor(modelItem => item.samochodyVM.rokProd)</td>
+
+                <td>
+                    @Html.ActionLink("Tankowanie", "TankowanieSamochodu", new { id_samochod = item.samochodyVM.id }) |
+                    @Html.ActionLink("Edit", "Edit", new { id = item.samochodyVM.id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.samochodyVM.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.samochodyVM.id }, new { onclick = "return confirm('Are you sure you wish to delete this position?');" })
+                </td>
+            </tr>
+        }
+
+    </table>
+}

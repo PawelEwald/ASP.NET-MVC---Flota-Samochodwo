@@ -1,0 +1,43 @@
+﻿@model IEnumerable<PracaWSIZ.Models.Samochody>
+
+@{
+                /**/
+
+                ViewBag.Title = "Home Page";
+}
+
+<br />
+@if (Session["UserName"] == null)
+{
+    <div class="jumbotron">
+        <h1>WITAM</h1>
+        <p class="lead"><u>Jeszcze nie jesteś zalogowany!! Zaloguj się.</u></p>
+        
+            <br />
+                <p>po zalogwaniu będziesz mógł</p>
+                <ul>
+                    <li class="list-group">dodać / usuwać / edytować pojazd do listy zarządzania</li>
+                    <li class="list-group">ewidencjonować nowe tankowanie i wyliczać średnie spalanie</li>
+                    <li class="list-group">ewidencjonować wykonane dodatkowe naprawy</li>
+                    <li class="list-group">kontrolować czas do wykonania kolejnego przeglądu okresowego</li>
+                    <li class="list-group">ewidencjonować termin wykonania przeglądu rejestracyjnego</li>
+                </ul>
+
+
+
+        <p><a href="/Home/Login" class="btn btn-success btn-lg">LOGOWANIE &raquo;</a></p>
+    </div>
+}
+
+
+@if (Session["UserName"] != null)
+{
+    <div class="jumbotron">
+        <h1>WITAM</h1>
+        <p class="lead">Zalogowałeś się jako @Session["Imie"].ToString() @Session["Nazwisko"].ToString() (@Session["UserName"].ToString()).</p>
+        <p class="lead">Witamy w serwisie.</p>
+
+        @*<p><a href="/Home/Logout" class="btn btn-danger btn-lg">WYLOGOWANIE</a></p>*@
+    </div>
+
+}

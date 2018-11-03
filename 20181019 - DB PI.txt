@@ -1,0 +1,116 @@
+create database SamochodyPD
+go
+use SamochodyPD
+go
+
+
+create table Uzytkownik(
+id int not null primary key identity(1,1),
+uzytkownik varchar(50) not null,
+imie varchar(50) not null,
+nazwisko varchar(50) not null,
+haslo varchar(50) not null
+)
+
+
+create table Samochody(
+id int not null primary key identity(1,1),
+marka varchar(50) not null,
+model varchar(50) not null,
+nazwozie varchar(50) not null,
+paliwo varchar(10) not null,
+konie int not null,
+pojemnosc float not null,
+nrRejestracyjny varchar(10) not null,
+rokProd int not null,
+dataRejestracji date
+)
+
+create table AwariaMechaniczna(
+id int not null primary key identity(1,1),
+id_samochod int not null,
+dataAwarii date not null,
+cena float not null,
+zdarzenie varchar(255) not null
+)
+
+create table AwariaBlacharska(
+id int not null primary key identity(1,1),
+id_samochod int not null,
+dataAwarii date not null,
+cena float not null,
+zdarzenie varchar(255) not null
+)
+
+create table Sprzedane(
+id int not null primary key identity(1,1),
+id_samochod int not null,
+sprzedane bit not null
+)
+
+
+create table Tankowanie(
+id int not null primary key identity(1,1),
+litry float not null,
+Km int not null,
+cena float not null,
+id_samochod int not null
+)
+
+create table CzynnosciAutoCoDotyczy(
+id int not null primary key identity(1,1),
+id_samochod int not null,
+czynnoscKM int,
+czynnoscMiesiace int,
+nazwaCzynnosci nvarchar(100)
+)
+
+create table CzynnosciWykonane (
+id int not null primary key identity(1,1),
+id_czynnosc int not null references CzynnosciAutoCoDotyczy (id),
+stanKm int,
+stanData date,
+cena float,
+opis varchar(100)
+)
+
+
+
+go
+
+
+
+alter table Sprzedane
+add foreign key (id_samochod) references Samochody (id)
+
+alter table AwariaMechaniczna
+add foreign key (id_samochod) references Samochody (id)
+
+alter table AwariaBlacharska
+add foreign key (id_samochod) references Samochody (id)
+
+alter table Tankowanie 
+add foreign key (id_samochod) references Samochody (id)
+
+alter table CzynnosciAutoCoDotyczy 
+add foreign key (id_samochod) references Samochody (id)
+
+alter table CzynnosciAutoCoDotyczy 
+add foreign key (id_czynnosc) references CzynnoœciWykonywaneCyklicznie (id)
+
+
+
+
+go
+
+create trigger [dbo].[SamochodySprzedaneTrigger]
+on [dbo].[Samochody]
+after insert
+as
+declare @idSamochod int
+
+set @idSamochod = 1+(select COUNT(*) from Sprzedane)
+insert into Sprzedane values (@idSamochod,1)
+
+go
+

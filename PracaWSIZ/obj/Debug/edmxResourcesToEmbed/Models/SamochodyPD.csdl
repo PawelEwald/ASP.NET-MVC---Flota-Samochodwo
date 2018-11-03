@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SamochodyPDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AwariaBlacharska">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_samochod" Type="Int32" Nullable="false" />
+    <Property Name="dataAwarii" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="cena" Type="Double" Nullable="false" />
+    <Property Name="zdarzenie" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Samochody" Relationship="Self.FK__AwariaBla__id_sa__49C3F6B7" FromRole="AwariaBlacharska" ToRole="Samochody" />
+  </EntityType>
+  <EntityType Name="AwariaMechaniczna">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_samochod" Type="Int32" Nullable="false" />
+    <Property Name="dataAwarii" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="cena" Type="Double" Nullable="false" />
+    <Property Name="zdarzenie" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Samochody" Relationship="Self.FK__AwariaMec__id_sa__48CFD27E" FromRole="AwariaMechaniczna" ToRole="Samochody" />
+  </EntityType>
+  <EntityType Name="CzynnosciAutoCoDotyczy">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_samochod" Type="Int32" Nullable="false" />
+    <Property Name="czynnoscKM" Type="Int32" />
+    <Property Name="czynnoscMiesiace" Type="Int32" />
+    <Property Name="nazwaCzynnosci" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CzynnosciWykonane" Relationship="Self.FK__Czynnosci__id_cz__75A278F5" FromRole="CzynnosciAutoCoDotyczy" ToRole="CzynnosciWykonane" />
+    <NavigationProperty Name="Samochody" Relationship="Self.FK__CzynnosciAut__id__4BAC3F29" FromRole="CzynnosciAutoCoDotyczy" ToRole="Samochody" />
+  </EntityType>
+  <EntityType Name="CzynnosciWykonane">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_czynnosc" Type="Int32" Nullable="false" />
+    <Property Name="stanKm" Type="Int32" />
+    <Property Name="stanData" Type="DateTime" Precision="0" />
+    <Property Name="cena" Type="Double" />
+    <Property Name="opis" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CzynnosciAutoCoDotyczy" Relationship="Self.FK__Czynnosci__id_cz__75A278F5" FromRole="CzynnosciWykonane" ToRole="CzynnosciAutoCoDotyczy" />
+  </EntityType>
+  <EntityType Name="Samochody">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="marka" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="model" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nazwozie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="paliwo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="konie" Type="Int32" Nullable="false" />
+    <Property Name="pojemnosc" Type="Double" Nullable="false" />
+    <Property Name="nrRejestracyjny" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="rokProd" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AwariaBlacharska" Relationship="Self.FK__AwariaBla__id_sa__49C3F6B7" FromRole="Samochody" ToRole="AwariaBlacharska" />
+    <NavigationProperty Name="AwariaMechaniczna" Relationship="Self.FK__AwariaMec__id_sa__48CFD27E" FromRole="Samochody" ToRole="AwariaMechaniczna" />
+    <NavigationProperty Name="CzynnosciAutoCoDotyczy" Relationship="Self.FK__CzynnosciAut__id__4BAC3F29" FromRole="Samochody" ToRole="CzynnosciAutoCoDotyczy" />
+    <NavigationProperty Name="Sprzedane" Relationship="Self.FK__Sprzedane__id_sa__47DBAE45" FromRole="Samochody" ToRole="Sprzedane" />
+    <NavigationProperty Name="Tankowanie" Relationship="Self.FK__Tankowanie__id__4AB81AF0" FromRole="Samochody" ToRole="Tankowanie" />
+    <NavigationProperty Name="Zdarzenie" Relationship="Self.FK__Zdarzenie__id_sa__46E78A0C" FromRole="Samochody" ToRole="Zdarzenie" />
+  </EntityType>
+  <EntityType Name="Sprzedane">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_samochod" Type="Int32" Nullable="false" />
+    <Property Name="sprzedane1" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Samochody" Relationship="Self.FK__Sprzedane__id_sa__47DBAE45" FromRole="Sprzedane" ToRole="Samochody" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Tankowanie">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="litry" Type="Double" Nullable="false" />
+    <Property Name="Km" Type="Int32" Nullable="false" />
+    <Property Name="cena" Type="Double" Nullable="false" />
+    <Property Name="id_samochod" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Samochody" Relationship="Self.FK__Tankowanie__id__4AB81AF0" FromRole="Tankowanie" ToRole="Samochody" />
+  </EntityType>
+  <EntityType Name="Uzytkownik">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="uzytkownik1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="imie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="haslo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Zdarzenie">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_samochod" Type="Int32" Nullable="false" />
+    <Property Name="id_czynnosc" Type="Int32" Nullable="false" />
+    <Property Name="km" Type="Int32" Nullable="false" />
+    <Property Name="dataZdarzenia" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="cena" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Samochody" Relationship="Self.FK__Zdarzenie__id_sa__46E78A0C" FromRole="Zdarzenie" ToRole="Samochody" />
+  </EntityType>
+  <Association Name="FK__AwariaBla__id_sa__49C3F6B7">
+    <End Role="Samochody" Type="Self.Samochody" Multiplicity="1" />
+    <End Role="AwariaBlacharska" Type="Self.AwariaBlacharska" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Samochody">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="AwariaBlacharska">
+        <PropertyRef Name="id_samochod" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__AwariaMec__id_sa__48CFD27E">
+    <End Role="Samochody" Type="Self.Samochody" Multiplicity="1" />
+    <End Role="AwariaMechaniczna" Type="Self.AwariaMechaniczna" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Samochody">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="AwariaMechaniczna">
+        <PropertyRef Name="id_samochod" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Czynnosci__id_cz__75A278F5">
+    <End Role="CzynnosciAutoCoDotyczy" Type="Self.CzynnosciAutoCoDotyczy" Multiplicity="1" />
+    <End Role="CzynnosciWykonane" Type="Self.CzynnosciWykonane" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CzynnosciAutoCoDotyczy">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CzynnosciWykonane">
+        <PropertyRef Name="id_czynnosc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CzynnosciAut__id__4BAC3F29">
+    <End Role="Samochody" Type="Self.Samochody" Multiplicity="1" />
+    <End Role="CzynnosciAutoCoDotyczy" Type="Self.CzynnosciAutoCoDotyczy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Samochody">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CzynnosciAutoCoDotyczy">
+        <PropertyRef Name="id_samochod" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Sprzedane__id_sa__47DBAE45">
+    <End Role="Samochody" Type="Self.Samochody" Multiplicity="1" />
+    <End Role="Sprzedane" Type="Self.Sprzedane" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Samochody">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Sprzedane">
+        <PropertyRef Name="id_samochod" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Tankowanie__id__4AB81AF0">
+    <End Role="Samochody" Type="Self.Samochody" Multiplicity="1" />
+    <End Role="Tankowanie" Type="Self.Tankowanie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Samochody">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Tankowanie">
+        <PropertyRef Name="id_samochod" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Zdarzenie__id_sa__46E78A0C">
+    <End Role="Samochody" Type="Self.Samochody" Multiplicity="1" />
+    <End Role="Zdarzenie" Type="Self.Zdarzenie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Samochody">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Zdarzenie">
+        <PropertyRef Name="id_samochod" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SamochodyPDEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AwariaBlacharska" EntityType="Self.AwariaBlacharska" />
+    <EntitySet Name="AwariaMechaniczna" EntityType="Self.AwariaMechaniczna" />
+    <EntitySet Name="CzynnosciAutoCoDotyczy" EntityType="Self.CzynnosciAutoCoDotyczy" />
+    <EntitySet Name="CzynnosciWykonane" EntityType="Self.CzynnosciWykonane" />
+    <EntitySet Name="Samochody" EntityType="Self.Samochody" />
+    <EntitySet Name="Sprzedane" EntityType="Self.Sprzedane" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Tankowanie" EntityType="Self.Tankowanie" />
+    <EntitySet Name="Uzytkownik" EntityType="Self.Uzytkownik" />
+    <EntitySet Name="Zdarzenie" EntityType="Self.Zdarzenie" />
+    <AssociationSet Name="FK__AwariaBla__id_sa__49C3F6B7" Association="Self.FK__AwariaBla__id_sa__49C3F6B7">
+      <End Role="Samochody" EntitySet="Samochody" />
+      <End Role="AwariaBlacharska" EntitySet="AwariaBlacharska" />
+    </AssociationSet>
+    <AssociationSet Name="FK__AwariaMec__id_sa__48CFD27E" Association="Self.FK__AwariaMec__id_sa__48CFD27E">
+      <End Role="Samochody" EntitySet="Samochody" />
+      <End Role="AwariaMechaniczna" EntitySet="AwariaMechaniczna" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Czynnosci__id_cz__75A278F5" Association="Self.FK__Czynnosci__id_cz__75A278F5">
+      <End Role="CzynnosciAutoCoDotyczy" EntitySet="CzynnosciAutoCoDotyczy" />
+      <End Role="CzynnosciWykonane" EntitySet="CzynnosciWykonane" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CzynnosciAut__id__4BAC3F29" Association="Self.FK__CzynnosciAut__id__4BAC3F29">
+      <End Role="Samochody" EntitySet="Samochody" />
+      <End Role="CzynnosciAutoCoDotyczy" EntitySet="CzynnosciAutoCoDotyczy" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Sprzedane__id_sa__47DBAE45" Association="Self.FK__Sprzedane__id_sa__47DBAE45">
+      <End Role="Samochody" EntitySet="Samochody" />
+      <End Role="Sprzedane" EntitySet="Sprzedane" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tankowanie__id__4AB81AF0" Association="Self.FK__Tankowanie__id__4AB81AF0">
+      <End Role="Samochody" EntitySet="Samochody" />
+      <End Role="Tankowanie" EntitySet="Tankowanie" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Zdarzenie__id_sa__46E78A0C" Association="Self.FK__Zdarzenie__id_sa__46E78A0C">
+      <End Role="Samochody" EntitySet="Samochody" />
+      <End Role="Zdarzenie" EntitySet="Zdarzenie" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

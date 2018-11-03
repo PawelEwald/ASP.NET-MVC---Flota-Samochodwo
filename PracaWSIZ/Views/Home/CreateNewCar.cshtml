@@ -1,0 +1,146 @@
+﻿@model PracaWSIZ.Models.SamochodyTankowanieVievModel
+@{
+    ViewBag.Title = "SamochodyTankowanieAddNew";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h2>Dodaj nowy samochód - uzupełnij wszystkie pola.</h2>
+
+
+@using (Ajax.BeginForm(new AjaxOptions()
+
+{
+    UpdateTargetId = "formResult",
+    HttpMethod = "Post"
+}))
+
+
+//@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+
+    <div class="form-horizontal jumbotron">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <div class="form-group">
+            @Html.Label("Marka:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div>
+                    @Html.EditorFor(model => model.samochodyVM.marka, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.samochodyVM.marka, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Model:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div>
+                    @Html.EditorFor(model => model.samochodyVM.model, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.samochodyVM.model, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Numer Rejestracyjny:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div>
+                    @Html.EditorFor(model => model.samochodyVM.nrRejestracyjny, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.samochodyVM.nrRejestracyjny, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Nadwozie:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div>
+                    @Html.EditorFor(model => model.samochodyVM.nazwozie, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.samochodyVM.nazwozie, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Paliwo:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div>
+                    @Html.EditorFor(model => model.samochodyVM.paliwo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.samochodyVM.paliwo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Konie:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div>
+                    @Html.EditorFor(model => model.samochodyVM.konie, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.samochodyVM.konie, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Pojemność:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div>
+                    @Html.EditorFor(model => model.samochodyVM.pojemnosc, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.samochodyVM.pojemnosc, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Rok produkcji:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div>
+                    @Html.EditorFor(model => model.samochodyVM.rokProd, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.samochodyVM.rokProd, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Przebieg:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div>
+                    @Html.EditorFor(model => model.tankowanieVM.Km, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.tankowanieVM.Km, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.Label("Data rejestracji:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div>
+                    @Html.EditorFor(model => model.samochodyVM.dataRejestracji, new { htmlAttributes = new { @class = "form-control", @placeholder = "yyyy-mm-dd", type = "date" } })
+                    @Html.ValidationMessageFor(model => model.samochodyVM.dataRejestracji, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Dodaj" class="btn btn-success" />
+                @Html.ActionLink("Powróć", "SamochodyLista", "Home", null, new { @class = "btn btn-warning " })
+
+            </div>
+        </div>
+    </div>
+}
+
