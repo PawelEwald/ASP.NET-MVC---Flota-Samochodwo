@@ -1,14 +1,17 @@
 Program przygotowywany jako podstawa do Pracy Inżynierskiej 
 
-Wykorzystano:<br />
-TSQL - DB first<br />
-ASP.NET MVC<br />
-ADO.NET Entity Data Model
-Bootstrap
-LINQ
-C#
-HTML
-HTML Helpers
-AJAX
-
+<ul>
+<li>Wykorzystano:</li>
+    
+<li>TSQL - DB first</li>
+<li>ASP.NET MVC</li>
+<li>ADO.NET Entity Data Model</li>
+<li>Bootstrap</li>
+<li>LINQ</li>
+<li>C#</li>
+<li>HTML</li>
+<li>HTML Helpers</li>
+<li>AJAX</li>
+ </ul> 
+ 
 Program zawiera testy jednostrowe. 
